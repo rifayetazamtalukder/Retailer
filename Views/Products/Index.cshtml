@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Retailer.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="mb-5">
+    <h1 class="text-success">All products</h1>
+    <p>
+        <a asp-action="Create" class="btn btn-info text-center">Create New</a>
+    </p>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top img-fluid" src="@("~/Images/Products/" + item.ProductImageName)" asp-append-version="true" alt="item.ProductImageName">
+                <div class="card-body">
+                    <h5 class="card-title text-capitalize">@item.ProductName</h5>
+                    <p class="card-text text-truncate">@item.ProductDetails</p>
+
+                    <!-- Button Controls-->
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-warning">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
